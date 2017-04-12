@@ -6,13 +6,14 @@
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 
 	<!-- Fav Icon -->
 	<link rel="icon" href="img/fav.png" sizes="16x16 32x32">
 
 	<!-- Sweet Alert -->
 	<script src="js/sweetalert.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<script type="text/javascript" src = "js/jobs.js"></script>
 
 	<style type="text/css">
 		html{
@@ -21,7 +22,7 @@
 		}
 	</style>
 </head>
-<body>
+<body onload = "trigger()">
 
 	<div class="container" id = "container">
 		<!-- Login Modal -->
@@ -64,13 +65,13 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li>
-								<a href="#">About Us</a>
+								<a href="about.html">About Us</a>
 							</li>
 							<li class="active">
 								<a href="list.html">Job List</a>
 							</li>
 							<li>
-								<a href="#">Status</a>
+								<a href="status.html">Status</a>
 							</li>
 							<li>
 								<a href="profile.html">Profile</a>
@@ -100,121 +101,8 @@
 		</br>
 		</br>
 
-		<div class="row" style="padding: 0px;">
-			<div class="well well-lg col-md-12" style="margin: 10px;">
-					<div class="col-md-3" style="margin: 0px;padding: 0px;">
-						<h2> Software Engineer</h2> 
-							<h7>VMware Pvt. Ltd., Bengaluru</h7>
-					</div>
-					<div class="col-md-7" style="margin-top: 10px;">
-					<h4 style="font-weight: bold;">Job Description </h4>
-					<h5>Responsible for porting software to a variety of different operating systems and/or computer architectures. Troubleshoots and debugs build and runtime problems and designs and implement solutions in a portable manner. Expected to identify classical solutions to problems independently, implementations and solutions not routinely reviewed by manager. Frequently guides the work of others and leads project teams to find solutions.</h5>
-					<div class="col-md-4" style="padding: 0px;margin: 0px;">
-						<h4 style="font-weight: bold;">Salary</h4> 
-						<h5> 10 lacs</h5>
-					</div>
-					<div class="col-md-3" style="padding: 0px;margin: 0px;">
-						<h4 style="font-weight: bold;">Joining Date</h4> 
-						<h5> 10, March, 2017</h5>
-					</div>
-					
-					</div>
-					<div class="col-md-2" style="margin-top: 15px;">
-						<button class="btn btn-success" style="width: 100%;height: 10%;">Apply<span class="glyphicon glyphicon-send"></span></button>
-					</div>
-			</div>
-		</div>
-
-		<div class="row" style="padding: 0px;">
-			<div class="well well-lg col-md-12" style="margin: 10px;">
-					<div class="col-md-3" style="margin: 0px;padding: 0px;">
-						<h2> Software Engineer</h2> 
-							<h7>VMware Pvt. Ltd., Bengaluru</h7>
-					</div>
-					<div class="col-md-7" style="margin-top: 10px;">
-					<h4 style="font-weight: bold;">Job Description </h4>
-					<h5>Responsible for porting software to a variety of different operating systems and/or computer architectures. Troubleshoots and debugs build and runtime problems and designs and implement solutions in a portable manner. Expected to identify classical solutions to problems independently, implementations and solutions not routinely reviewed by manager. Frequently guides the work of others and leads project teams to find solutions.</h5>
-					<div class="col-md-4" style="padding: 0px;margin: 0px;">
-						<h4 style="font-weight: bold;">Salary</h4> 
-						<h5> 10 lacs</h5>
-					</div>
-					<div class="col-md-3" style="padding: 0px;margin: 0px;">
-						<h4 style="font-weight: bold;">Joining Date</h4> 
-						<h5> 10, March, 2017</h5>
-					</div>
-					
-					</div>
-					<div class="col-md-2" style="margin-top: 15px;">
-						<button class="btn btn-success" style="width: 100%;height: 10%;">Apply<span class="glyphicon glyphicon-send"></span></button>
-					</div>
-			</div>
-		</div>
-		<div class="row" style="padding: 0px;">
-			<div class="well well-lg col-md-12" style="margin: 10px;">
-					<div class="col-md-3" style="margin: 0px;padding: 0px;">
-						<h2> Software Engineer</h2> 
-							<h7>VMware Pvt. Ltd., Bengaluru</h7>
-					</div>
-					<div class="col-md-7" style="margin-top: 10px;">
-						<h4 style="font-weight: bold;">Job Description </h4>
-						<h5>Description</h5>
-						<div class="col-md-4" style="padding: 0px;margin: 0px;">
-							<h4 style="font-weight: bold;">Salary</h4> 
-							<h5> 10 lacs</h5>
-						</div>
-						<div class="col-md-3" style="padding: 0px;margin: 0px;">
-							<h4 style="font-weight: bold;">Joining Date</h4> 
-							<h5> 10, March, 2017</h5>
-						</div>
-					
-					</div>
-					<div class="col-md-2" style="margin-top: 15px;">
-						<button class="btn btn-success" style="width: 100%;height: 10%;">Apply<span class="glyphicon glyphicon-send"></span></button>
-					</div>
-			</div>
-		</div>
-
 	</div>
-	<!-- 
-	<div class="row">
-			<div class="chatbox">
-     			<button type="button" class="btn btn-info" style="width:100px;">Chat :)	</button>
-    		</div>
-	</div> -->
-	<script type="text/javascript">
-		//swal("Here's a message!", "It's pretty, isn't it?")
-		var jobCount = 1;
-		function loadJobs()
-		{
-			var container = document.getElementById("container");
-			var newJob = document.createElement("div");
-			newJob.id = "job" + jobCount;
-			newJob.className ="row";
-			newJob.style = "padding: 0px";
-
-			var newBorder = document.createElement("div");
-			newBorder.className = "well well-lg col-md-12";
-			newBorder.style = "margin: 10px";
-
-			var newTitle = document.createElement("div");
-			newTitle.className = "col-md-3";
-			newTitle.style = "margin: 0px;padding: 0px";
-
-			var jobTitle = document.createElement("h2");
-			jobTitle.innerHTML = "Sofware Engineer";
-
-			var jobSubTitle = document.createElement("h7");
-			jobSubTitle.innerHTML = "VMWare Pvt. Ltd., Bengaluru";
-
-			newTitle.appendChild(jobTitle);
-			newTitle.appendChild(jobSubTitle);
-			newBorder.appendChild(newTitle);
-
-			var descriptionDiv = document.createElement("div");
-			descriptionDiv.className = "col-md-7";
-			descriptionDiv.style = "margin-top: 10px";
-
-		}
+	<script type="text/javascript">		
 	</script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

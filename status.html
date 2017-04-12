@@ -14,10 +14,124 @@
 	<script src="js/sweetalert.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 
+	
+	<script>	
+		var jobCount = 1;
+		var jobid = 1;
+		var intervalID = 0;
+		var xhr = null;
+		var record = null;
+		function loadJobs(jobid)
+		{
+			xhr = new XMLHttpRequest();
+			if(xhr)
+			{
+				xhr.onreadystatechange = stateChangeHandler;
+				xhr.open("GET", "getJobs.php?jobid=" + jobid, true);
+				xhr.send(null);
+			}
+		}	
+
+		function stateChangeHandler()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				var data = xhr.responseText;
+				record= data.split(',');
+				//document.getElementById("container").appendChild(document.createTextNode(data));
+				//record = JSON.parse(data);
+				//document.getElementById("container").appendChild(document.createTextNode(record.job_title));
+				putJobs();
+
+			}
+		}	
+		
+		function putJobs()
+		{
+			
+			var container = document.getElementById("list");
+			
+			var newJob = document.createElement("div");
+			newJob.className ="well well-lg col-md-11";
+			newJob.style = "margin: 10px;";
+
+			var newTitle = document.createElement("div");
+			newTitle.className ="col-md-4";
+			newTitle.style = "margin: 0px;padding: 0px;";
+
+			var jobTitle = document.createElement("h2");
+			jobTitle.innerHTML = record[0];
+
+			var jobSubTitle = document.createElement("h7");
+			jobSubTitle.innerHTML = record[1];
+
+			newTitle.appendChild(jobTitle);
+			newTitle.appendChild(jobSubTitle);
+
+			var descriptionDiv = document.createElement("div");
+			descriptionDiv.className = "col-md-5";
+			descriptionDiv.style = "margin-top: 10px";
+			
+			var salaryDiv = document.createElement("div");
+			salaryDiv.className = "col-md-2";
+			salaryDiv.style = "padding: 0px;margin: 0px;";
+
+			var joinDiv = document.createElement("div");
+			joinDiv.className = "col-md-3";
+			joinDiv.style = "padding: 0px;margin: 0px;";
+
+			var salaryHead= document.createElement("h4");
+			salaryHead.style="font-weight: bold;";
+			salaryHead.innerHTML="Salary";
+
+			var salary=document.createElement("h5");
+			salary.innerHTML=record[2];
+
+			salaryDiv.appendChild(salaryHead);
+			salaryDiv.appendChild(salary);
+			
+
+			var joiningDiv = document.createElement("div");
+			joiningDiv.className = "col-md-3";
+			joiningDiv.style = "padding: 0px;margin: 0px;";
+
+			var joiningText = document.createElement("h4");
+			joiningText.style = "font-weight: bold";
+			joiningText.innerHTML = "Joining Date";
+
+			var joiningVal = document.createElement("h5");
+			joiningVal.innerHTML = record[3]
+
+
+			descriptionDiv.appendChild(salaryDiv);
+			joiningDiv.appendChild(joiningText);
+			joiningDiv.appendChild(joiningVal);
+			descriptionDiv.appendChild(joiningDiv);
+
+			var applyDiv = document.createElement("div");
+			applyDiv.className = "col-md-2";
+			applyDiv.style = "margin-top: 15px";
+
+			var button = document.createElement("button");
+			button.className = "btn btn-success";
+			button.style = "width: 100%;height: 10%";
+			button.innerHTML = "Applied";
+
+			newJob.appendChild(newTitle);
+			newJob.appendChild(descriptionDiv);
+			newJob.appendChild(button);
+			container.appendChild(newJob);
+
+			jobCount++;
+
+		} 
+
+	</script>
+
 </head>
 <body>
-
-	<div class="container-fluid">
+	
+	<div class="container-fluid" id="list">
 
 		<div class="row">
 			<div class="col-md-12">
@@ -34,7 +148,7 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li>
-								<a href="#">About Us</a>
+								<a href="about.html">About Us</a>
 							</li>
 							<li>
 								<a href="list.html">Job List</a>
@@ -68,7 +182,7 @@
 	</br>
 	</br>
 	</br>
-	<div class="row" style="padding-left: 80px;">
+	<!-- div class="row" style="padding-left: 80px;" id="list">
 			<div class="well well-lg col-md-11" style="margin: 10px;">
 					<div class="col-md-4" style="margin: 0px;padding: 0px;">
 						<h2> Software Engineer</h2> 
@@ -89,13 +203,19 @@
 						<button class="btn btn-success" style="width: 100%;height: 10%;">Applied  <span class="glyphicon glyphicon-send"></span></button>
 					</div>
 			</div>
-		</div>	
+		</div -->	
 </div>
 <script type="text/javascript">
-		//To be copy pasted from ananya's code
 	</script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/scripts.js"></script>
+	<script>
+		var source = new EventSource("sse.php");
+		source.onmessage = function(event) {
+			d = event.data;
+			loadJobs(d);
+		};
+	</script>
 </body>
 </html>
